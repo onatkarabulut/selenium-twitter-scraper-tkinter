@@ -16,7 +16,7 @@ app.minsize(400, 430)
 app.title("Twitter Scraper by Onat")
 
 
-icon_path = "selenium-twitter-scraper/img/app_png.ico"
+icon_path = "img/app_png.ico"
 icon = Image.open(icon_path)
 icon_photo = ImageTk.PhotoImage(icon)
 app.tk.call('wm', 'iconphoto', app._w, icon_photo)
@@ -65,7 +65,7 @@ def start_scraping():
     print(f"Top Tweets: {top}")
     print(f"Regular Tweets: {regular}")
     print(f"Latest Tweets: {latest}")
-    command_string = f"python selenium-twitter-scraper/scraper --user=@{username} --password={password} -t={t_count} -ht={hashtags} "
+    command_string = f"python scraper --user=@{username} --password={password} -t={t_count} -ht={hashtags} "
     if top == 1:
         command_string += "--top" 
     elif latest == 1:
@@ -74,7 +74,7 @@ def start_scraping():
     
 
     # Run scraping in a separate thread to avoid blocking the GUI
-    scraping_thread = threading.Thread(target=start_command, args=(command_string))
+    scraping_thread = threading.Thread(target=start_command, args=(command_string,))
     scraping_thread.start()
 
     
