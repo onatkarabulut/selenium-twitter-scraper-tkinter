@@ -520,7 +520,15 @@ It may be due to the following:
 
         print("CSV Saved: {}".format(file_path))
 
+        try:
+            #CSV to Excel
+            excel_path = f"{folder_path}{current_time}_tweets_1-{len(self.data)}.xlsx"
+            data_csv=pd.read_csv(file_path)
+            data_csv.to_excel(f"{excel_path}", index=None, header=True)
+        except Exception as e:
+            print(e)
         pass
 
     def get_tweets(self):
         return self.data
+
